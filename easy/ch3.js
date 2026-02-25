@@ -44,7 +44,8 @@ Constraints:
 */
 
 // ----- Solution -----
-// Time Complexity O(n) and Space Complexity O(1)
+// Version 1 - Time Complexity O(n) and Space Complexity O(1)
+/*
 const romanNumeral = {
   I: 1,
   V: 5,
@@ -89,6 +90,64 @@ const romanToInt = function (s) {
   }
   return int;
 };
+*/
+
+// Version 2 - Time Complexity O(n) and Space Complexity O(1)
+// In Roman numerals, a smaller value before a larger value means subtraction.
+/*
+const romanNumeral = {
+  I: 1,
+  V: 5,
+  X: 10,
+  L: 50,
+  C: 100,
+  D: 500,
+  M: 1000,
+};
+
+function romanToInt(s) {
+  let int = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (romanNumeral[s[i]] < romanNumeral[s[i + 1]]) {
+      int += romanNumeral[s[i + 1]] - romanNumeral[s[i]];
+      i++;
+    } else {
+      int += romanNumeral[s[i]];
+    }
+  }
+  return int;
+}
+
+Note:
+Using romanNumeral[s[i]] and romanNumeral[s[i + 1]] multiple times slows down the code and lowers the beats. Storing them in variables first makes the code faster and improves the beats.
+
+  */
+
+// Version 3 - Time Complexity O(n) and Space Complexity O(1)
+const romanNumeral = {
+  I: 1,
+  V: 5,
+  X: 10,
+  L: 50,
+  C: 100,
+  D: 500,
+  M: 1000,
+};
+
+function romanToInt(s) {
+  let int = 0;
+  for (let i = 0; i < s.length; i++) {
+    const cur = romanNumeral[s[i]];
+    const next = romanNumeral[s[i + 1]];
+    if (cur < next) {
+      int += next - cur;
+      i++;
+    } else {
+      int += cur;
+    }
+  }
+  return int;
+}
 
 // ----- Test -----
 console.log(romanToInt("III"));
