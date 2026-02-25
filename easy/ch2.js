@@ -27,6 +27,8 @@ Only one valid answer exists.
 */
 
 // ----- Solution -----
+// Version 1 - Time Complexity O(n ** 2) 😱
+/*
 const twoSum = function (nums, target) {
   for (let i = 0; i < nums.length; i++) {
     for (let j = 1; j < nums.length; j++) {
@@ -36,6 +38,22 @@ const twoSum = function (nums, target) {
     }
   }
 };
+*/
+
+// Version 2 - Time Complexity O(n)
+function twoSum(nums, target) {
+  const map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+
+    if (map[complement] !== undefined) {
+      return [map[complement], i];
+    }
+
+    map[nums[i]] = i;
+  }
+}
 
 // ----- Test -----
 console.log(twoSum([2, 7, 11, 15], 9));
