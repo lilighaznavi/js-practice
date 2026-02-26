@@ -22,7 +22,8 @@ Examples:
 */
 
 // ----- Solution -----
-// Time Complexity O(n) and Space Complexity O(1)
+// Version 1 - Time Complexity O(n) and Space Complexity O(1)
+/*
 const betterThanAverage = function (classPoints, yourPoints) {
   let sum = 0;
   for (let i = 0; i < classPoints.length; i++) {
@@ -35,6 +36,16 @@ const betterThanAverage = function (classPoints, yourPoints) {
   } else {
     return false;
   }
+};
+*/
+
+// Version 2 - Time Complexity O(n) and Space Complexity O(1)
+const betterThanAverage = function (classPoints, yourPoints) {
+  let sum = 0;
+  for (let i = 0; i < classPoints.length; i++) {
+    sum += classPoints[i];
+  }
+  return yourPoints > sum / classPoints.length;
 };
 
 // ----- Test -----
